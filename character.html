@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jedi Characters</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div id="stats">
+      <h2 id="name">Yoda</h2>
+      <h3><strong>Role:</strong> <span id="role">Jedi Master</span></h3>
+      <h3><strong>Age:</strong> <span id="age">900</span></h3>
+      <h3>
+        <strong>Force Points:</strong> <span id="force-points">2000</span>
+      </h3>
+    </div>
+
+    <script>
+      $.get("/api/characters/", function(data) {
+          for(let i = 0; i < data.length;i++){
+              console.log(data[i]);
+              var name = $("<h2>");
+              name.text(data[i].name);
+              name.appendTo("#stats"); 
+              var role = $("<h3>");
+                role.html("<strong>Role: </strong>" + data[i].role);
+                role.appendTo("#stats"); 
+              var age = $("<h3>");
+              age.html("<strong>Age: </strong>" + data[i].age);
+              age.appendTo("#stats"); 
+              var forcePoints = $("<h3>");
+                forcePoints.html("<strong>Force Points: </strong>" + data[i].forcePoints);
+                forcePoints.appendTo("#stats"); 
+          }
+      });
+    </script>
+  </body>
+</html>

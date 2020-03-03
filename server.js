@@ -55,6 +55,9 @@ app.get("/api/characters", function(req, res) {
   return res.json(characters);
 });
 
+app.get("/character", function(req, res) {
+  res.sendFile(path.join(__dirname, "character.html"));
+});
 // Displays a single character, or returns false
 app.get("/api/characters/:character", function(req, res) {
   var chosen = req.params.character;
@@ -92,3 +95,4 @@ app.post("/api/characters", function(req, res) {
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
+
